@@ -1,0 +1,38 @@
+[2025-08-06T15:35:04.862+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: number_counting_dag.count_20 scheduled__2025-08-05T15:34:39.195887+00:00 [queued]>
+[2025-08-06T15:35:04.867+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: number_counting_dag.count_20 scheduled__2025-08-05T15:34:39.195887+00:00 [queued]>
+[2025-08-06T15:35:04.867+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2025-08-06T15:35:04.867+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 2
+[2025-08-06T15:35:04.867+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2025-08-06T15:35:04.873+0000] {taskinstance.py:1304} INFO - Executing <Task(BashOperator): count_20> on 2025-08-05 15:34:39.195887+00:00
+[2025-08-06T15:35:04.875+0000] {standard_task_runner.py:55} INFO - Started process 1507 to run task
+[2025-08-06T15:35:04.877+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'number_counting_dag', 'count_20', 'scheduled__2025-08-05T15:34:39.195887+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/count.py', '--cfg-path', '/tmp/tmpt5epe3l0']
+[2025-08-06T15:35:04.877+0000] {standard_task_runner.py:83} INFO - Job 4: Subtask count_20
+[2025-08-06T15:35:04.907+0000] {task_command.py:389} INFO - Running <TaskInstance: number_counting_dag.count_20 scheduled__2025-08-05T15:34:39.195887+00:00 [running]> on host ac9b20df240e
+[2025-08-06T15:35:04.940+0000] {taskinstance.py:1513} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=***@example.com
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=number_counting_dag
+AIRFLOW_CTX_TASK_ID=count_20
+AIRFLOW_CTX_EXECUTION_DATE=2025-08-05T15:34:39.195887+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2025-08-05T15:34:39.195887+00:00
+[2025-08-06T15:35:04.941+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2025-08-06T15:35:04.942+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'for i in {11..20}; do echo $i; sleep 1; done']
+[2025-08-06T15:35:04.946+0000] {subprocess.py:86} INFO - Output:
+[2025-08-06T15:35:04.947+0000] {subprocess.py:93} INFO - 11
+[2025-08-06T15:35:05.954+0000] {subprocess.py:93} INFO - 12
+[2025-08-06T15:35:06.957+0000] {subprocess.py:93} INFO - 13
+[2025-08-06T15:35:07.965+0000] {subprocess.py:93} INFO - 14
+[2025-08-06T15:35:08.967+0000] {subprocess.py:93} INFO - 15
+[2025-08-06T15:35:09.971+0000] {subprocess.py:93} INFO - 16
+[2025-08-06T15:35:10.975+0000] {subprocess.py:93} INFO - 17
+[2025-08-06T15:35:11.984+0000] {subprocess.py:93} INFO - 18
+[2025-08-06T15:35:12.989+0000] {subprocess.py:93} INFO - 19
+[2025-08-06T15:35:13.997+0000] {subprocess.py:93} INFO - 20
+[2025-08-06T15:35:15.005+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-08-06T15:35:15.039+0000] {taskinstance.py:1327} INFO - Marking task as SUCCESS. dag_id=number_counting_dag, task_id=count_20, execution_date=20250805T153439, start_date=20250806T153504, end_date=20250806T153515
+[2025-08-06T15:35:15.068+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2025-08-06T15:35:15.084+0000] {taskinstance.py:2582} INFO - 1 downstream tasks scheduled from follow-on schedule check
