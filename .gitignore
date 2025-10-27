@@ -1,0 +1,22 @@
+# 환경 변수 파일
+.env
+
+# 데이터 관련
+*.csv
+output.txt
+label_scaler.joblib
+
+# Python / Airflow 캐시 및 로그
+**/__pycache__/
+*.pyc
+logs/
+
+# macOS
+.DS_Store
+
+# 모델 및 대용량 파일
+*.pt
+*.dmg
+
+# 민감한 키 파일
+api_keys.py
