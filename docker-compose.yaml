@@ -8,7 +8,7 @@
 #
 #   http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing,
+# Unless required by 3 law or agreed to in writing,
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 # KIND, either express or implied.  See the License for the
@@ -44,11 +44,11 @@ x-airflow-common:
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.5.0}
+  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.9.3}
   # build: .
   environment:
     &airflow-common-env
-    AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     # For backward compatibility, with Airflow <2.3
     AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -61,6 +61,8 @@ x-airflow-common:
     AIRFLOW__CORE__DEFAULT_TIMEZONE: 'Asia/Seoul'
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
+    - ./inference:/opt/airflow/inference
+    - ./models:/opt/airflow/models
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
@@ -133,7 +135,8 @@ services:
 
   airflow-worker:
     <<: *airflow-common
-    command: celery worker
+    volumes:
+      - ./dags:/opt/airflow/dags
     healthcheck:
       test:
         - "CMD-SHELL"
@@ -178,7 +181,7 @@ services:
         }
         airflow_version=$$(AIRFLOW__LOGGING__LOGGING_LEVEL=INFO && gosu airflow airflow version)
         airflow_version_comparable=$$(ver $${airflow_version})
-        min_airflow_version=2.2.0
+        min_airflow_version=2.9.3
         min_airflow_version_comparable=$$(ver $${min_airflow_version})
         if (( airflow_version_comparable < min_airflow_version_comparable )); then
           echo
